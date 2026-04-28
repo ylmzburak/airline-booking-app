@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Flight Booking Confirmation</title>
+  <style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+    }
+    .header {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 25px;
+        text-align: center;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        position: relative;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+    }
+    .header p {
+        margin: 5px 0 0;
+        font-size: 16px;
+        opacity: 0.9;
+    }
+    .content {
+        padding: 30px;
+    }
+    .section-title {
+        font-size: 22px;
+        color: #007bff;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        font-weight: 600;
+    }
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px dashed #e0e0e0;
+        font-size: 16px;
+    }
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+    .detail-label {
+        font-weight: 500;
+        color: #555;
+        flex: 1;
+    }
+    .detail-value {
+        font-weight: 600;
+        color: #000;
+        text-align: right;
+        flex: 1;
+    }
+    .passenger-list {
+        margin-top: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .passenger-header {
+        background-color: #f0f0f0;
+        padding: 15px;
+        font-weight: 600;
+        font-size: 18px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .passenger-item {
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .passenger-item:last-child {
+        border-bottom: none;
+    }
+    .passenger-name {
+        font-weight: 600;
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top: 1px solid #e0e0e0;
+    }
+    .button {
+        display: inline-block;
+        background-color: #28a745;
+        color: #ffffff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 25px;
+        transition: background-color 0.3s ease;
+    }
+    .button:hover {
+        background-color: #218838;
+    }
+    .note {
+        font-size: 13px;
+        color: #888;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .airport-code {
+        font-weight: bold;
+        color: #007bff;
+    }
+    .flight-info {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .flight-route {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .flight-route .arrow {
+        font-size: 24px;
+        color: #007bff;
+        margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Booking Confirmed!</h1>
+    <p>Your journey is all set.</p>
+  </div>
+  <div class="content">
+    <p style="font-size: 18px; text-align: center; margin-bottom: 30px;">
+      Hello <strong th:text="${userName}">[User Name]</strong>,
+      <br>
+      Your booking with reference <strong th:text="${bookingReference}">[Booking Ref]</strong> is confirmed.
+    </p>
+
+    <div class="section-title">Flight Details</div>
+
+    <div class="flight-info">
+      Flight: <span th:text="${flightNumber}">[Flight Number]</span>
+    </div>
+
+    <div class="flight-route">
+      <span class="airport-code" th:text="${departureAirportIataCode}">[DEP]</span>
+      <span class="arrow">&#x27A1;</span>
+      <span class="airport-code" th:text="${arrivalAirportIataCode}">[ARR]</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Departure Airport:</span>
+      <span class="detail-value" th:text="${departureAirportName}">[Departure Airport Name]</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Departure City:</span>
+      <span class="detail-value" th:text="${departureAirportCity}">[Departure Airport City]</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Departure Time:</span>
+      <span class="detail-value" th:text="${#temporals.format(departureTime, 'dd MMM yyyy HH:mm')}">[Departure Time]</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Arrival Airport:</span>
+      <span class="detail-value" th:text="${arrivalAirportName}">[Arrival Airport Name]</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Arrival City:</span>
+      <span class="detail-value" th:text="${arrivalAirportCity}">[Arrival Airport City]</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Arrival Time:</span>
+      <span class="detail-value"
+            th:text="${#temporals.format(arrivalTime, 'dd MMM yyyy HH:mm')}">[Arrival Time]</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Base Price:</span>
+      <span class="detail-value" th:text="${#numbers.formatCurrency(basePrice)}">[Base Price]</span>
+    </div>
+
+    <div class="section-title" style="margin-top: 30px;">Passenger Details</div>
+    <div class="passenger-list">
+      <div class="passenger-header">Passengers</div>
+      <div class="passenger-item" th:each="passenger : ${passengers}">
+        <div class="passenger-name" th:text="${passenger.firstName + ' ' + passenger.lastName}">[Passenger
+          Name]
+        </div>
+        <div th:if="${passenger.passportNumber != null and passenger.passportNumber != ''}">
+          <span class="detail-label">Passport:</span>
+          <span class="detail-value" th:text="${passenger.passportNumber}">[Passport Number]</span>
+        </div>
+        <div th:if="${passenger.seatNumber != null and passenger.seatNumber != ''}">
+          <span class="detail-label">Seat:</span>
+          <span class="detail-value" th:text="${passenger.seatNumber}">[Seat Number]</span>
+        </div>
+        <div th:if="${passenger.specialRequests != null and passenger.specialRequests != ''}">
+          <span class="detail-label">Special Requests:</span>
+          <span class="detail-value" th:text="${passenger.specialRequests}">[Special Requests]</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">
+      Please arrive at the airport at least 2 hours before departure for domestic flights and 3 hours for
+      international flights.
+    </p>
+
+    <div style="text-align: center;">
+      <a class="button" th:href="${viewBookingUrl}">View My Booking</a>
+
+    </div>
+  </div>
+  <div class="footer">
+    Thank you for choosing our service!
+    <br>
+    &copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Your Airline Name. All rights
+    reserved.
+  </div>
+</div>
+</body>
+</html>

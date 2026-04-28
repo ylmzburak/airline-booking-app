@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Yilmaz Airline!</title>
+  <style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+    }
+    .header {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 25px;
+        text-align: center;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    .header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+    }
+    .content {
+        padding: 30px;
+        line-height: 1.6;
+    }
+    .section-title {
+        font-size: 22px;
+        color: #007bff;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 10px;
+        font-weight: 600;
+    }
+    .button {
+        display: inline-block;
+        background-color: #28a745;
+        color: #ffffff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 25px;
+        transition: background-color 0.3s ease;
+    }
+    .button:hover {
+        background-color: #218838;
+    }
+    .footer {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top: 1px solid #e0e0e0;
+    }
+    .greeting {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Welcome Aboard!</h1>
+  </div>
+  <div class="content">
+    <p class="greeting">Hello <strong th:text="${userName}">[User Name]</strong>,</p>
+
+    <p>Thank you for registering with Yilmaz Airline! We are thrilled to have you join our community.</p>
+
+    <p>You can now explore our wide range of flights, manage your bookings, and enjoy exclusive offers.</p>
+
+
+    <div style="text-align: center;">
+      <a class="button" th:href="${frontendLoginUrl}">Log In to Your Account</a>
+    </div>
+
+    <p style="margin-top: 30px;">If you have any questions or need assistance, please do not hesitate to contact our
+      customer support team.</p>
+    <p>We look forward to helping you with your next journey!</p>
+  </div>
+  <div class="footer">
+    Best regards,<br>
+    Yilmaz Airline Team<br>
+    <a href="[frontendLoginUrl]" style="color: #007bff; text-decoration: none;">www.yilmazairline.com</a><br>
+    &copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Yilmaz Airline. All rights
+    reserved.
+  </div>
+</div>
+</body>
+</html>
